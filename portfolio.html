@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio | Saddiah</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                Saddiah<span>.</span>
+            </a>
+
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="biodata.html">My Biodata</a>
+                <a href="portfolio.html" class="active">My Portfolio</a>
+                <a href="video.html">My Video</a>
+                <a href="comments.html">Your Comments</a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="portfolio-page">
+
+        <!-- Page Heading -->
+        <section class="page-heading reveal">
+            <p class="greeting">MY CREATIVE JOURNEY ✨</p>
+            <h1>My <span>Portfolio</span></h1>
+            <p>
+                A collection of my creative works,
+                university projects and experiences.
+            </p>
+        </section>
+
+        <!-- Project Gallery -->
+        <section class="projects-grid">
+
+            <!-- Project 1 -->
+            <article class="project-card reveal">
+                <div class="project-image">
+                    <img src="images/cafe.jpg"
+                         alt="Urban Loft Cafe 3D project">
+                    <span class="project-tag">3D Animation</span>
+                </div>
+
+                <div class="project-content">
+                    <h2>Urban Loft Café</h2>
+                    <p>
+                        A creative 3D animation project
+                        featuring a modern café environment,
+                        developed using Blender.
+                    </p>
+                    <button class="project-btn"
+                            data-project="cafe">
+                        View Project →
+                    </button>
+                </div>
+            </article>
+
+            <!-- Project 2 -->
+            <article class="project-card reveal">
+                <div class="project-image">
+                    <img src="images/ar.jpg"
+                         alt="Sarawak Crocodile AR project">
+                    <span class="project-tag">Augmented Reality</span>
+                </div>
+
+                <div class="project-content">
+                    <h2>Legenda Buaya Sungai Sarawak</h2>
+                    <p>
+                        An interactive AR storytelling
+                        project inspired by Sarawak
+                        folklore, featuring 3D pop-up
+                        scenes and multimedia elements.
+                    </p>
+                    <button class="project-btn"
+                            data-project="ar">
+                        View Project →
+                    </button>
+                </div>
+            </article>
+
+            <!-- Project 3 -->
+            <article class="project-card reveal">
+                <div class="project-image">
+                    <img src="images/aura.jpg"
+                         alt="Adaptive:Mind project">
+                    <span class="project-tag">System Design</span>
+                </div>
+
+                <div class="project-content">
+                    <h2>Adaptive:Mind</h2>
+                    <p>
+                        A system analysis and design
+                        project focused on helping
+                        students improve productivity
+                        and manage distractions.
+                    </p>
+                    <button class="project-btn"
+                            data-project="aura">
+                        View Project →
+                    </button>
+                </div>
+            </article>
+
+            <!-- Project 4 -->
+            <article class="project-card reveal">
+                <div class="project-image">
+                    <img src="images/web.jpg"
+                         alt="Personal portfolio website">
+                    <span class="project-tag">Web Development</span>
+                </div>
+
+                <div class="project-content">
+                    <h2>Personal Portfolio Website</h2>
+                    <p>
+                        A responsive personal website
+                        developed using HTML, CSS
+                        and JavaScript with animations
+                        and interactive features.
+                    </p>
+                    <button class="project-btn"
+                            data-project="web">
+                        View Project →
+                    </button>
+                </div>
+            </article>
+
+        </section>
+
+        <!-- Project Details Modal -->
+        <div class="project-modal" id="projectModal"
+             aria-hidden="true">
+            <div class="modal-box"
+                 role="dialog"
+                 aria-modal="true"
+                 aria-labelledby="modalTitle">
+
+                <button class="modal-close"
+                        id="closeModal"
+                        aria-label="Close project details">
+                    &times;
+                </button>
+
+                <img id="modalImage" src=""
+                     alt="Project preview">
+
+                <h2 id="modalTitle"></h2>
+                <p id="modalDescription"></p>
+            </div>
+        </div>
+
+        <div class="bio-next reveal">
+            <a href="video.html" class="btn">
+                Explore My Video →
+            </a>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>© 2026 Saddiah. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

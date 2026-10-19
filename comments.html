@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Your Comments | Saddiah</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">
+                Saddiah<span>.</span>
+            </a>
+
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="biodata.html">My Biodata</a>
+                <a href="portfolio.html">My Portfolio</a>
+                <a href="video.html">My Video</a>
+                <a href="comments.html" class="active">
+                    Your Comments
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="comments-page">
+
+        <!-- Page Heading -->
+        <section class="page-heading reveal">
+            <p class="greeting">
+                LET'S CONNECT 💌
+            </p>
+
+            <h1>Your <span>Comments</span></h1>
+
+            <p>
+                I'd love to hear from you!
+                Leave a little message below.
+            </p>
+        </section>
+
+        <!-- Comment Form -->
+        <section class="comment-form-card reveal">
+
+            <div class="form-heading">
+                <span>💗</span>
+                <h2>Leave a Lovely Message</h2>
+                <p>
+                    Your thoughts and feedback
+                    mean a lot to me!
+                </p>
+            </div>
+
+            <form id="commentForm">
+
+                <div class="form-group">
+                    <label for="visitorName">
+                        Your Name
+                    </label>
+                    <input type="text"
+                           id="visitorName"
+                           placeholder="Enter your name"
+                           maxlength="60"
+                           required>
+                </div>
+
+                <div class="form-group">
+                    <label for="visitorEmail">
+                        Your Email
+                    </label>
+                    <input type="email"
+                           id="visitorEmail"
+                           placeholder="Enter your email"
+                           required>
+                </div>
+
+                <div class="form-group">
+                    <label for="visitorMessage">
+                        Your Message
+                    </label>
+                    <textarea id="visitorMessage"
+                              rows="5"
+                              maxlength="500"
+                              placeholder="Write something sweet..."
+                              required></textarea>
+                </div>
+
+                <!-- Star Rating -->
+                <fieldset class="rating-field">
+                    <legend>Rate My Website ⭐</legend>
+
+                    <div class="star-rating"
+                         id="starRating">
+                        <label>
+                            <input type="radio"
+                                   name="rating"
+                                   value="1" required>
+                            <span>★</span>
+                        </label>
+
+                        <label>
+                            <input type="radio"
+                                   name="rating"
+                                   value="2">
+                            <span>★</span>
+                        </label>
+
+                        <label>
+                            <input type="radio"
+                                   name="rating"
+                                   value="3">
+                            <span>★</span>
+                        </label>
+
+                        <label>
+                            <input type="radio"
+                                   name="rating"
+                                   value="4">
+                            <span>★</span>
+                        </label>
+
+                        <label>
+                            <input type="radio"
+                                   name="rating"
+                                   value="5">
+                            <span>★</span>
+                        </label>
+                    </div>
+                </fieldset>
+
+                <button type="submit"
+                        class="submit-btn">
+                    Send My Message 💌
+                </button>
+
+                <p id="successMessage"
+                   class="success-message"
+                   role="status"
+                   aria-live="polite"></p>
+
+            </form>
+        </section>
+
+        <!-- Display Comments -->
+        <section class="visitor-section reveal">
+
+            <h2 class="section-title">
+                💌 Lovely Messages
+            </h2>
+
+            <p class="visitor-subtitle">
+                A little collection of kind words
+                from visitors.
+            </p>
+
+            <div id="commentsList"
+                 class="comments-grid">
+            </div>
+
+        </section>
+
+        <!-- Back Home -->
+        <div class="bio-next reveal">
+            <a href="index.html" class="btn">
+                Back to Homepage →
+            </a>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>© 2026 Saddiah. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
