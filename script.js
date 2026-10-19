@@ -29,7 +29,7 @@ if ("IntersectionObserver" in window) {
 const projects = {
     cafe: {
         title: "Urban Loft Café",
-        image: "images/cafe.jpg",
+        image: "cafe.jpg",
         description:
             "Urban Loft Café is a 3D animation project " +
             "created using Blender. The project explores " +
@@ -38,7 +38,7 @@ const projects = {
 
     ar: {
         title: "Legenda Buaya Sungai Sarawak",
-        image: "images/ar.jpg",
+        image: "ar.jpg",
         description:
             "An Augmented Reality storytelling project " +
             "inspired by Sarawak folklore. It combines " +
@@ -49,7 +49,7 @@ const projects = {
     
 aura: {
     title: "Adaptive:Mind",
-    image: "images/aura.jpg",
+    image: "aura.jpg",
     description:
         "Adaptive:Mind is a system analysis and design " +
         "project focused on helping students improve " +
@@ -60,7 +60,7 @@ aura: {
 
     web: {
         title: "Personal Portfolio Website",
-        image: "images/web.jpg",
+        image: "web.jpg",
         description:
             "A responsive personal portfolio developed " +
             "using HTML, CSS and JavaScript. It includes " +
