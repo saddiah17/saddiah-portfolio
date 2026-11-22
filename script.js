@@ -1,32 +1,54 @@
 
-// Scroll Reveal Animation
+// ==========================================
+// SADDIAH PORTFOLIO - MAIN JAVASCRIPT
+// ==========================================
+
+
+// ==========================================
+// 1. SCROLL REVEAL ANIMATION
+// ==========================================
 
 const revealElements = document.querySelectorAll(".reveal");
 
 if ("IntersectionObserver" in window) {
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
-                observer.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.1
-    });
+
+    const observer = new IntersectionObserver(
+        (entries) => {
+
+            entries.forEach((entry) => {
+
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    observer.unobserve(entry.target);
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.1
+        }
+    );
 
     revealElements.forEach((element) => {
         observer.observe(element);
     });
+
 } else {
+
     revealElements.forEach((element) => {
         element.classList.add("visible");
     });
+
 }
 
-// ===== PORTFOLIO PROJECT POPUP =====
+
+// ==========================================
+// 2. PORTFOLIO PROJECT POPUP
+// ==========================================
 
 const projects = {
+
     cafe: {
         title: "Urban Loft Café",
         image: "cafe.jpg",
@@ -46,17 +68,15 @@ const projects = {
             "3D pop-up scenes."
     },
 
-    
-aura: {
-    title: "Adaptive:Mind",
-    image: "aura.jpg",
-    description:
-        "Adaptive:Mind is a system analysis and design " +
-        "project focused on helping students improve " +
-        "productivity, maintain focus and manage " +
-        "distractions through a digital application."
-},
-
+    aura: {
+        title: "Adaptive:Mind",
+        image: "aura.jpg",
+        description:
+            "Adaptive:Mind is a system analysis and design " +
+            "project focused on helping students improve " +
+            "productivity, maintain focus and manage " +
+            "distractions through a digital application."
+    },
 
     web: {
         title: "Personal Portfolio Website",
@@ -67,7 +87,9 @@ aura: {
             "multimedia content, animation and " +
             "interactive features."
     }
+
 };
+
 
 const projectModal = document.getElementById("projectModal");
 const closeModal = document.getElementById("closeModal");
@@ -76,8 +98,11 @@ if (projectModal && closeModal) {
 
     let previousFocus = null;
 
-    document.querySelectorAll(".project-btn").forEach(button => {
+    // Open project popup
+    document.querySelectorAll(".project-btn").forEach((button) => {
+
         button.addEventListener("click", () => {
+
             const key = button.dataset.project;
             const project = projects[key];
 
@@ -85,39 +110,71 @@ if (projectModal && closeModal) {
 
             previousFocus = document.activeElement;
 
-            document.getElementById("modalTitle").textContent =
-                project.title;
+            const modalTitle =
+                document.getElementById("modalTitle");
 
-            document.getElementById("modalImage").src =
-                project.image;
+            const modalImage =
+                document.getElementById("modalImage");
 
-            document.getElementById("modalDescription").textContent =
-                project.description;
+            const modalDescription =
+                document.getElementById("modalDescription");
+
+            if (!modalTitle || !modalImage || !modalDescription) {
+                return;
+            }
+
+            modalTitle.textContent = project.title;
+            modalImage.src = project.image;
+            modalImage.alt = project.title;
+            modalDescription.textContent = project.description;
 
             projectModal.classList.add("show");
             projectModal.setAttribute("aria-hidden", "false");
+
             document.body.style.overflow = "hidden";
+
             closeModal.focus();
+
         });
+
     });
 
+
+    // Close project popup
     function hideProjectModal() {
+
         projectModal.classList.remove("show");
         projectModal.setAttribute("aria-hidden", "true");
+
         document.body.style.overflow = "";
-        if (previousFocus) previousFocus.focus();
+
+        if (previousFocus) {
+            previousFocus.focus();
+        }
+
     }
 
+
+    // Close button
     closeModal.addEventListener("click", hideProjectModal);
 
+
+    // Click outside popup
     projectModal.addEventListener("click", (event) => {
+
         if (event.target === projectModal) {
             hideProjectModal();
         }
+
     });
 
+
+    // Keyboard controls
     document.addEventListener("keydown", (event) => {
-        if (!projectModal.classList.contains("show")) return;
+
+        if (!projectModal.classList.contains("show")) {
+            return;
+        }
 
         if (event.key === "Escape") {
             hideProjectModal();
@@ -127,157 +184,137 @@ if (projectModal && closeModal) {
             event.preventDefault();
             closeModal.focus();
         }
+
     });
+
 }
 
-// ===== YOUR COMMENTS PAGE =====
 
-const commentForm = document.getElementById("commentForm");
+// ==========================================
+// 3. PMFKI PHOTO GALLERY LIGHTBOX
+// ==========================================
 
-if (commentForm) {
+document.addEventListener("DOMContentLoaded", () => {
 
-    const commentsList =
-        document.getElementById("commentsList");
+    const photos =
+        document.querySelectorAll(".pmfki-gallery-img");
 
-    const successMessage =
-        document.getElementById("successMessage");
+    const lightbox =
+        document.getElementById("pmfki-lightbox");
 
-    const ratingInputs =
-        document.querySelectorAll(
-            '#starRating input[name="rating"]'
-        );
+    const lightboxImage =
+        document.getElementById("pmfki-lightbox-image");
 
-    const storageKey = "saddiahPortfolioComments";
+    const closeButton =
+        document.getElementById("pmfki-close");
 
-    // Update star colours
-    function updateStars() {
-        const selected =
-            document.querySelector(
-                '#starRating input[name="rating"]:checked'
-            );
-
-        const rating = selected ? Number(selected.value) : 0;
-
-        ratingInputs.forEach(input => {
-            const label = input.closest("label");
-
-            label.classList.toggle(
-                "selected",
-                Number(input.value) <= rating
-            );
-        });
+    // Only run on pages with PMFKI gallery
+    if (!lightbox || !lightboxImage || !closeButton) {
+        return;
     }
 
-    ratingInputs.forEach(input => {
-        input.addEventListener("change", updateStars);
+    let previousPhotoFocus = null;
+
+
+    // Open selected photo
+    function openPhoto(photo) {
+
+        previousPhotoFocus = document.activeElement;
+
+        lightboxImage.src = photo.src;
+        lightboxImage.alt = photo.alt;
+
+        lightbox.classList.add("active");
+        lightbox.setAttribute("aria-hidden", "false");
+
+        document.body.style.overflow = "hidden";
+
+        closeButton.focus();
+
+    }
+
+
+    // Close photo viewer
+    function closeLightbox() {
+
+        lightbox.classList.remove("active");
+        lightbox.setAttribute("aria-hidden", "true");
+
+        lightboxImage.removeAttribute("src");
+
+        document.body.style.overflow = "";
+
+        if (previousPhotoFocus &&
+            typeof previousPhotoFocus.focus === "function") {
+            previousPhotoFocus.focus();
+        }
+
+    }
+
+
+    // Make gallery photos clickable
+    photos.forEach((photo) => {
+
+        photo.setAttribute("tabindex", "0");
+        photo.setAttribute("role", "button");
+
+        photo.addEventListener("click", () => {
+            openPhoto(photo);
+        });
+
+        photo.addEventListener("keydown", (event) => {
+
+            if (
+                event.key === "Enter" ||
+                event.key === " "
+            ) {
+                event.preventDefault();
+                openPhoto(photo);
+            }
+
+        });
+
     });
 
-    // Read saved comments
-    function getComments() {
-        try {
-            return JSON.parse(
-                localStorage.getItem(storageKey) || "[]"
-            );
-        } catch (error) {
-            return [];
-        }
-    }
 
-    // Display comments safely
-    function displayComments() {
-        commentsList.innerHTML = "";
+    // Close with X button
+    closeButton.addEventListener("click", closeLightbox);
 
-        const comments = getComments();
 
-        if (comments.length === 0) {
-            const empty = document.createElement("p");
-            empty.className = "empty-comments";
-            empty.textContent =
-                "No messages yet. Be the first to leave one! 💗";
+    // Close when clicking dark background
+    lightbox.addEventListener("click", (event) => {
 
-            commentsList.appendChild(empty);
-            return;
+        if (event.target === lightbox) {
+            closeLightbox();
         }
 
-        comments.forEach(comment => {
-            const card = document.createElement("article");
-            card.className = "visitor-card";
-
-            const name = document.createElement("h3");
-            name.textContent = comment.name;
-
-            const stars = document.createElement("div");
-            stars.className = "visitor-stars";
-            stars.textContent =
-                "★".repeat(comment.rating) +
-                "☆".repeat(5 - comment.rating);
-
-            const message = document.createElement("p");
-            message.textContent = comment.message;
-
-            const date = document.createElement("span");
-            date.className = "comment-date";
-            date.textContent = comment.date;
-
-            card.append(name, stars, message, date);
-            commentsList.appendChild(card);
-        });
-    }
-
-    // Handle form submission
-    commentForm.addEventListener("submit", function(event) {
-        event.preventDefault();
-
-        const name =
-            document.getElementById("visitorName").value.trim();
-
-        const email =
-            document.getElementById("visitorEmail").value.trim();
-
-        const message =
-            document.getElementById("visitorMessage").value.trim();
-
-        const selectedRating =
-            document.querySelector(
-                '#starRating input[name="rating"]:checked'
-            );
-
-        if (!name || !email || !message || !selectedRating) {
-            successMessage.textContent =
-                "Please complete all fields and choose a rating.";
-            return;
-        }
-
-        const comment = {
-            name: name,
-            message: message,
-            rating: Number(selectedRating.value),
-            date: new Date().toLocaleDateString("en-MY")
-        };
-
-        const comments = getComments();
-        comments.unshift(comment);
-
-        try {
-            localStorage.setItem(
-                storageKey,
-                JSON.stringify(comments)
-            );
-
-            displayComments();
-
-            successMessage.textContent =
-                "Thank you for your lovely message! 💗";
-
-            commentForm.reset();
-            updateStars();
-
-        } catch (error) {
-            successMessage.textContent =
-                "Unable to save your message. Please try again.";
-        }
     });
 
-    // Load existing comments
-    displayComments();
-}
+
+    // Close with Escape key
+    document.addEventListener("keydown", (event) => {
+
+        if (
+            event.key === "Escape" &&
+            lightbox.classList.contains("active")
+        ) {
+            closeLightbox();
+        }
+
+    });
+
+});
+
+
+// ==========================================
+// 4. COMMENTS SYSTEM
+// ==========================================
+
+// Public comments are now handled separately
+// in comments-firebase.js.
+//
+// This file no longer uses localStorage
+// to save visitor comments.
+//
+// Keep comments-firebase.js linked only
+// in comments.html.

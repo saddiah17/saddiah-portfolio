@@ -51,7 +51,9 @@
 
             <div class="form-heading">
                 <span>💗</span>
+
                 <h2>Leave a Lovely Message</h2>
+
                 <p>
                     Your thoughts and feedback
                     mean a lot to me!
@@ -60,95 +62,122 @@
 
             <form id="commentForm">
 
+                <!-- Visitor Name -->
                 <div class="form-group">
                     <label for="visitorName">
                         Your Name
                     </label>
-                    <input type="text"
-                           id="visitorName"
-                           placeholder="Enter your name"
-                           maxlength="60"
-                           required>
+
+                    <input
+                        type="text"
+                        id="visitorName"
+                        placeholder="Enter your name"
+                        minlength="2"
+                        maxlength="30"
+                        autocomplete="name"
+                        required
+                    >
+
+                    <small>
+                        🔒 Your name will be partially
+                        hidden when your comment appears.
+                        Example: Saddiah → S***iah
+                    </small>
                 </div>
 
-                <div class="form-group">
-                    <label for="visitorEmail">
-                        Your Email
-                    </label>
-                    <input type="email"
-                           id="visitorEmail"
-                           placeholder="Enter your email"
-                           required>
-                </div>
-
+                <!-- Visitor Message -->
                 <div class="form-group">
                     <label for="visitorMessage">
                         Your Message
                     </label>
-                    <textarea id="visitorMessage"
-                              rows="5"
-                              maxlength="500"
-                              placeholder="Write something sweet..."
-                              required></textarea>
+
+                    <textarea
+                        id="visitorMessage"
+                        rows="5"
+                        maxlength="500"
+                        placeholder="Write something sweet..."
+                        required
+                    ></textarea>
                 </div>
 
                 <!-- Star Rating -->
                 <fieldset class="rating-field">
-                    <legend>Rate My Website ⭐</legend>
+                    <legend>
+                        Rate My Website ⭐
+                    </legend>
 
                     <div class="star-rating"
                          id="starRating">
+
                         <label>
-                            <input type="radio"
-                                   name="rating"
-                                   value="1" required>
+                            <input
+                                type="radio"
+                                name="rating"
+                                value="1"
+                                required
+                            >
                             <span>★</span>
                         </label>
 
                         <label>
-                            <input type="radio"
-                                   name="rating"
-                                   value="2">
+                            <input
+                                type="radio"
+                                name="rating"
+                                value="2"
+                            >
                             <span>★</span>
                         </label>
 
                         <label>
-                            <input type="radio"
-                                   name="rating"
-                                   value="3">
+                            <input
+                                type="radio"
+                                name="rating"
+                                value="3"
+                            >
                             <span>★</span>
                         </label>
 
                         <label>
-                            <input type="radio"
-                                   name="rating"
-                                   value="4">
+                            <input
+                                type="radio"
+                                name="rating"
+                                value="4"
+                            >
                             <span>★</span>
                         </label>
 
                         <label>
-                            <input type="radio"
-                                   name="rating"
-                                   value="5">
+                            <input
+                                type="radio"
+                                name="rating"
+                                value="5"
+                            >
                             <span>★</span>
                         </label>
+
                     </div>
                 </fieldset>
 
-                <button type="submit"
-                        class="submit-btn">
+                <!-- Submit Button -->
+                <button
+                    type="submit"
+                    class="submit-btn"
+                >
                     Send My Message 💌
                 </button>
 
-                <p id="successMessage"
-                   class="success-message"
-                   role="status"
-                   aria-live="polite"></p>
+                <!-- Status Message -->
+                <p
+                    id="successMessage"
+                    class="success-message"
+                    role="status"
+                    aria-live="polite"
+                ></p>
 
             </form>
         </section>
 
-        <!-- Display Comments -->
+        <!-- Public Comments Section -->
         <section class="visitor-section reveal">
 
             <h2 class="section-title">
@@ -157,11 +186,19 @@
 
             <p class="visitor-subtitle">
                 A little collection of kind words
-                from visitors.
+                from visitors. Thank you for
+                spreading love and positivity! 🌷
             </p>
 
-            <div id="commentsList"
-                 class="comments-grid">
+            <!-- Firebase comments appear here -->
+            <div
+                id="commentsList"
+                class="comments-grid"
+                aria-live="polite"
+            >
+                <p class="empty-comments">
+                    Loading lovely messages... 💗
+                </p>
             </div>
 
         </section>
@@ -175,10 +212,21 @@
 
     </main>
 
+    <!-- Footer -->
     <footer>
-        <p>© 2026 Saddiah. All Rights Reserved.</p>
+        <p>
+            © 2026 Saddiah. All Rights Reserved.
+        </p>
     </footer>
 
+    <!-- Existing animations and portfolio functions -->
     <script src="script.js"></script>
+
+    <!-- Firebase public comments -->
+    <script
+        type="module"
+        src="comments-firebase.js">
+    </script>
+
 </body>
 </html>
